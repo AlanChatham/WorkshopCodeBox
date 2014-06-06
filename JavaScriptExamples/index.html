@@ -1,0 +1,94 @@
+<!-- Comments in HTML look like this -->
+<!-- They can extend over multiple lines,
+       and we'll use them to segment code -->
+	   
+	   
+<!-- Basic header boilerplate that won't change -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> JavaScript hates you </title>
+	</head>
+	<body>
+		<p> Here's some text we can see </p>
+
+	<!-- We'll be putting our script work here, right before the closing </body> tag 
+		  This way, the browser can load all the HTML content before loading the JavaScript,
+		  which will let it load the page faster -->
+	
+	<!-- Part 1: Basic console writing -->
+		<script>
+			console.log("I wonder if this works...");
+		</script>
+	
+	<!-- Part 2: Making something react -->
+		<button type="button" onclick="yellToConsole()">Click Me!</button>
+		
+		<script>
+			function yellToConsole(){
+				alert("Pay attention to meeeee!");
+			}
+		</script>
+		
+	<!-- Part 3: Basic Processing.js -->
+		<script src="processing.min.js"></script>
+		<canvas data-processing-sources="hello-web.pde"> </canvas>
+		
+	<!-- Part 4: Getting data in from JavaScript to Processing.js-->
+		<canvas id="processingCanvas" data-processing-sources="ButtonTextTest.pde"> </canvas>
+		<button type="button" onclick="drawTextJS('processingCanvas','Button Stuff')">Get Data into Processing!</button>
+		
+		<script>
+			function drawTextJS(id, text){
+				var pjs = Processing.getInstanceById(id);
+				pjs.drawText(text);
+			}
+		</script>
+		
+	<!-- Part 5: Calling JavaScript from Processing.js -->
+		<canvas id="processingCanvas2" data-processing-sources="ProcessingToJS.pde"> </canvas>
+		<p id = "textToChange"> Wooo. </p>
+		
+		<script>
+			function changeText(text){
+				document.getElementById("textToChange").innerHTML = text;
+			}
+			
+			var isJavaScriptBoundToProcessing = false;
+			
+			function bindJavascript(){
+				var pjs = Processing.getInstanceById("processingCanvas2");
+				if (pjs != null){
+					pjs.bindJavascript(this);
+					isJavaScriptBoundToProcessing = true;
+					console.log('bound');
+				}
+				// If this function didn't work (i.e., Processing.js
+				//  hasn't loaded yet, try again in 250ms
+				if (!isJavaScriptBoundToProcessing){
+					setTimeout(bindJavascript, 250);
+				}
+			}
+			
+			// When the page loads this, start trying to
+			//  bind this Javascript to Processing.js
+			bindJavascript();
+		</script>
+			
+	<!-- Part 6: Getting JSON into Processing.js -->
+		<canvas id="processingCanvas3" data-processing-sources="ButtonTextTest.pde"> </canvas>
+		<button type="button" onclick="drawTextFromJSON('processingCanvas3')">JSON Test!</button>
+		
+		<script>
+			function drawTextFromJSON(id){
+				var JSONTestString = '{ "words" : "Some words."}'
+				var JSONData = JSON.parse(JSONTestString);
+				drawTextJS(id, JSONData.words);
+			}
+		</script>
+		
+		
+
+	</body>
+</html>
