@@ -23,19 +23,21 @@
 		</script>
 	
 	<!-- Part 2: Making something react -->
-		<button type="button" onclick="yellToConsole()">Click Me!</button>
+<!--		<button type="button" onclick="yellToConsole()">Click Me!</button>
 		
 		<script>
 			function yellToConsole(){
 				alert("Pay attention to meeeee!");
 			}
 		</script>
-		
+-->		
 	<!-- Part 3: Basic Processing.js -->
+<!--
 		<script src="processing.min.js"></script>
 		<canvas data-processing-sources="hello-web.pde"> </canvas>
-		
+-->		
 	<!-- Part 4: Getting data in from JavaScript to Processing.js-->
+<!--
 		<canvas id="processingCanvas" data-processing-sources="ButtonTextTest.pde"> </canvas>
 		<button type="button" onclick="drawTextJS('processingCanvas','Button Stuff')">Get Data into Processing!</button>
 		
@@ -45,9 +47,10 @@
 				pjs.drawText(text);
 			}
 		</script>
-		
+-->		
 	<!-- Part 5: Calling JavaScript from Processing.js -->
-		<canvas id="processingCanvas2" data-processing-sources="ProcessingToJS.pde"> </canvas>
+<!--
+	<canvas id="processingCanvas2" data-processing-sources="ProcessingToJS.pde"> </canvas>
 		<p id = "textToChange"> Wooo. </p>
 		
 		<script>
@@ -75,9 +78,10 @@
 			//  bind this Javascript to Processing.js
 			bindJavascript();
 		</script>
-			
+-->			
 	<!-- Part 6: Getting JSON into Processing.js -->
-		<canvas id="processingCanvas3" data-processing-sources="ButtonTextTest.pde"> </canvas>
+<!--
+	<canvas id="processingCanvas3" data-processing-sources="ButtonTextTest.pde"> </canvas>
 		<button type="button" onclick="drawTextFromJSON('processingCanvas3')">JSON Test!</button>
 		
 		<script>
@@ -87,7 +91,7 @@
 				drawTextJS(id, JSONData.words);
 			}
 		</script>
-		
+-->		
 		
 
 	</body>
